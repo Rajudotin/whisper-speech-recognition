@@ -82,6 +82,7 @@ speech_project/whisper-finetuned/
 Ensure model.safetensors exists inside the folder
 
 ⚙️ Installation Guide
+
 1️⃣ Create Virtual Environment
 py -3.10 -m venv venvspeech310
 venvspeech310\Scripts\activate
