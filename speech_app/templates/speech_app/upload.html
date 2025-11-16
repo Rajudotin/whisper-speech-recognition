@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Audio</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'upload_audio' %}">Upload</a>
+        <a href="{% url 'record_audio' %}">Live Record</a>
+    </nav>
+
+    <div class="upload-container">
+        <div class="upload-header">
+            <h1>Upload Audio File</h1>
+            <p>Select an audio file to generate transcript and speech synthesis</p>
+        </div>
+
+        <div class="file-upload-area" id="dropZone">
+            <div class="upload-icon">🎤</div>
+            <p class="upload-text">Drag & drop your audio file here</p>
+            <div class="or-divider">OR</div>
+            <input type="file" id="fileInput" class="custom-file-input" accept="audio/*" required>
+            <label for="fileInput" class="file-input-label">Browse Files</label>
+            <div id="fileName" class="file-name"></div>
+        </div>
+
+        <form id="uploadForm" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input type="file" name="audio_file" id="actualFileInput" style="display: none;" accept="audio/*" required>
+            <button type="submit" class="upload-btn">Upload & Process</button>
+        </form>
+
+        <div id="processing" style="display:none;">
+            <div class="spinner"></div>
+            <span>Processing your audio...</span>
+        </div>
+
+        <div class="results-section">
+            <h2>Transcript</h2>
+            <textarea id="transcript" readonly placeholder="Transcript will appear here..."></textarea>
+
+            <h2>Text-to-Speech Output</h2>
+            <audio id="speechPlayer" controls style="display:none;"></audio>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 AI Speech Recognition. 
+    </footer>
+
+    <script>
+        // Drag and drop functionality
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('actualFileInput');
+        const fileName = document.getElementById('fileName');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('active');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('active');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('active');
+            
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                fileName.textContent = e.dataTransfer.files[0].name;
+            }
+        });
+
+        // Regular file input change
+        document.getElementById('fileInput').addEventListener('change', function() {
+            if (this.files.length) {
+                fileInput.files = this.files;
+                fileName.textContent = this.files[0].name;
+            }
+        });
+
+        // Form submission
+        const form = document.getElementById("uploadForm");
+        const transcriptBox = document.getElementById("transcript");
+        const speechPlayer = document.getElementById("speechPlayer");
+        const processing = document.getElementById("processing");
+
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+            processing.style.display = "flex";
+            
+            const formData = new FormData(form);
+            const response = await fetch("{% url 'upload_audio' %}", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+            processing.style.display = "none";
+
+            if (data.transcript) {
+                transcriptBox.value = data.transcript;
+                speechPlayer.src = data.speech_url;
+                speechPlayer.style.display = "block";
+            } else {
+                alert("Error: " + (data.error || "Something went wrong."));
+            }
+        });
+    </script>
+</body>
+</html>

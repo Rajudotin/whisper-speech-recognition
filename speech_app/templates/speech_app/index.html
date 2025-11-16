@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Speech Recognition</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'index.css' %}"> -->
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'upload_audio' %}">Upload</a>
+        <a href="{% url 'record_audio' %}">Live Record</a>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Advanced Speech Recognition</h1>
+            <p>Real-time speech-to-text and text-to-speech conversion using state-of-the-art AI technology.</p>
+            
+            <div class="cta-buttons">
+                <a href="{% url 'record_audio' %}" class="cta-button primary-button">Get Started</a>
+                <a href="#" class="cta-button secondary-button">Live Demo</a>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2 class="section-title">FEATURES</h2>
+            <p class="section-subtitle">Everything you need for accurate speech recognition and synthesis</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3 class="feature-title">Live Recording</h3>
+                    <p class="feature-description">Record your voice in real-time with visual feedback and immediate transcription.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔊</div>
+                    <h3 class="feature-title">Audio Upload</h3>
+                    <p class="feature-description">Upload existing audio files for instant transcription and processing.</p>
+                </div>
+                
+                <!-- <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3 class="feature-title">Accurate Transcription</h3>
+                    <p class="feature-description">Get precise text transcripts from your audio recordings with high accuracy.</p>
+                </div>
+                 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3 class="feature-title">Text-to-Speech</h3>
+                    <p class="feature-description">Convert your text back to natural sounding speech with multiple voice options.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 Advanced Speech Recognition. 
+    </footer>
+</body>
+</html>

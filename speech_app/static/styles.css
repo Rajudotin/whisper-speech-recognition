@@ -1,0 +1,656 @@
+/* index.css - Dedicated styles for home page */
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+  border-bottom: 1px solid #333;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #4e9af1, #80b2ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #aaa;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* Call-to-Action Buttons */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #4e9af1, #80b2ff);
+  color: white;
+  box-shadow: 0 4px 15px rgba(78, 154, 241, 0.4);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid #4e9af1;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(78, 154, 241, 0.5);
+}
+
+/* Features Section */
+.features-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #f1f1f1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid #333;
+  transition: all 0.3s ease;
+  /* text-align: center; */
+  /* Add these properties */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This centers the icon and text horizontally */
+  text-align: center; /* This centers the text */
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #4e9af1;
+}
+
+.feature-title {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #f1f1f1;
+}
+
+.feature-description {
+  color: #aaa;
+  width: 100%;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .features-section {
+    padding: 40px 20px;
+  }
+}
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #121212;
+  margin: 0;
+  padding: 0;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+/* Headings (PPE-Inspired) */
+h1,
+h2,
+h3 {
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 200px;
+  letter-spacing: 0.5px;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 30px;
+  background: linear-gradient(90deg, #4e9af1, #80b2ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+h2 {
+  color: #80b2ff;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-top: 30px;
+}
+
+/* Navigation Bar (PPE-Inspired) */
+nav {
+  background-color: #1a1a1a;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+}
+
+nav a {
+  color: #80b2ff;
+  margin: 0 20px;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 6px;
+}
+
+nav a:hover {
+  background-color: rgba(78, 154, 241, 0.1);
+  text-decoration: none;
+}
+
+/* Button Styles (PPE-Inspired Gradient) */
+button {
+  background: linear-gradient(135deg, #4e9af1, #80b2ff);
+  color: white;
+  font-size: 16px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 15px 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(78, 154, 241, 0.3);
+  font-weight: 500;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(78, 154, 241, 0.4);
+}
+
+/* upload.css - Dedicated styles for upload page */
+
+/* Upload Container */
+/* upload.css - Updated to match home page style */
+
+/* Upload Container */
+.upload-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  text-align: center;
+}
+
+/* Upload Header */
+.upload-header h1 {
+  font-size: 2.3rem;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #4e9af1, #80b2ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.upload-header p {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+/* File Upload Area */
+.file-upload-area {
+  border: 2px dashed #444;
+  border-radius: 12px;
+  padding: 40px 20px;
+  margin: 30px 0;
+  transition: all 0.3s ease;
+  background-color: rgba(78, 154, 241, 0.05);
+}
+
+.file-upload-area:hover {
+  border-color: #4e9af1;
+  background-color: rgba(78, 154, 241, 0.1);
+}
+
+.file-upload-area.active {
+  border-color: #00c851;
+  background-color: rgba(0, 200, 81, 0.05);
+}
+
+.upload-icon {
+  font-size: 3rem;
+  color: #4e9af1;
+  margin-bottom: 15px;
+}
+
+.upload-text {
+  margin: 15px 0;
+  color: #ddd;
+  font-size: 1.1rem;
+}
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: #666;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #444;
+  margin: 0 15px;
+}
+
+/* File Input */
+.custom-file-input {
+  display: none;
+}
+
+.file-input-label {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #4e9af1, #80b2ff);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(78, 154, 241, 0.3);
+  margin: 10px 0;
+}
+
+.file-input-label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(78, 154, 241, 0.4);
+}
+
+.file-name {
+  margin-top: 15px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* Upload Button */
+.upload-btn {
+  width: 100%;
+  max-width: 300px;
+  margin: 25px auto;
+  padding: 14px;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #00c851, #007e33);
+  box-shadow: 0 4px 10px rgba(0, 200, 81, 0.3);
+}
+
+.upload-btn:hover {
+  background: linear-gradient(135deg, #00e676, #009944);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 200, 81, 0.4);
+}
+
+/* Processing Indicator */
+#processing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  color: #4e9af1;
+  margin: 20px 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(78, 154, 241, 0.3);
+  border-radius: 50%;
+  border-top-color: #4e9af1;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Results Section */
+.results-section {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.results-section h2 {
+  color: #80b2ff;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 15px;
+  background-color: #252525;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+audio {
+  width: 100%;
+  margin: 15px 0;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upload-container {
+    padding: 30px 20px;
+    margin: 20px 15px;
+  }
+
+  .file-upload-area {
+    padding: 30px 15px;
+  }
+
+  .upload-header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* record.css - Dedicated styles for recording page */
+
+/* Recording Container */
+.recording-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  text-align: center;
+}
+
+/* Recording Header */
+.recording-header {
+  margin-bottom: 30px;
+}
+
+.recording-header h1 {
+  font-size: 2.3rem;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #4e9af1, #80b2ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.recording-header p {
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+/* Status Indicators */
+#recording-status {
+  font-size: 1.2rem;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.status-ready {
+  background-color: rgba(78, 154, 241, 0.1);
+  border-left: 4px solid #4e9af1;
+}
+
+.status-recording {
+  background-color: rgba(255, 59, 48, 0.1);
+  border-left: 4px solid #ff3b30;
+  color: #ff3b30;
+}
+
+.status-processing {
+  background-color: rgba(255, 204, 0, 0.1);
+  border-left: 4px solid #ffcc00;
+  color: #ffcc00;
+}
+
+.status-success {
+  background-color: rgba(52, 199, 89, 0.1);
+  border-left: 4px solid #34c759;
+  color: #34c759;
+}
+
+/* Recording Controls */
+.recording-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.recording-btn {
+  min-width: 120px;
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#startBtn {
+  background: linear-gradient(135deg, #5e5ce6, #3634a3);
+  box-shadow: 0 4px 10px rgba(94, 92, 230, 0.3);
+}
+
+#stopBtn {
+  background: linear-gradient(135deg, #5e5ce6, #3634a3);
+  box-shadow: 0 4px 10px rgba(94, 92, 230, 0.3);
+}
+
+#micTestBtn {
+  background: linear-gradient(135deg, #5e5ce6, #3634a3);
+  box-shadow: 0 4px 10px rgba(94, 92, 230, 0.3);
+}
+
+/* Visual Feedback Elements */
+#recording-bar {
+  height: 6px;
+  background-color: #333;
+  border-radius: 3px;
+  margin: 25px 0;
+  overflow: hidden;
+}
+
+#recording-fill {
+  background: linear-gradient(90deg, #ff3b30, #ff9500);
+  height: 100%;
+  width: 0%;
+}
+
+#waveform {
+  display: none;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px 0;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.bar {
+  background: linear-gradient(to top, #4e9af1, #80b2ff);
+  width: 5px;
+  border-radius: 3px;
+  transition: height 0.1s;
+  box-shadow: 0 0 5px rgba(78, 154, 241, 0.5);
+}
+
+/* Results Section */
+.results-section {
+  textarea {
+    width: 90%;
+    max-width: 700px;
+    height: 100px;
+    display: block;
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 10px;
+    resize: vertical;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  margin-top: 40px;
+  text-align: left;
+}
+
+/* Processing Indicator */
+#processing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  color: #4e9af1;
+  margin: 20px 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(78, 154, 241, 0.3);
+  border-radius: 50%;
+  border-top-color: #4e9af1;
+  animation: spin 1s ease-in-out infinite;
+}
+/* Add to your existing record.css */
+#restartBtn {
+  background: linear-gradient(135deg, #5e5ce6, #3634a3);
+  box-shadow: 0 4px 10px rgba(94, 92, 230, 0.3);
+}
+
+#restartBtn:hover {
+  background: linear-gradient(135deg, #5e5ce6, #3634a3);
+  box-shadow: 0 4px 10px rgba(94, 92, 230, 0.3);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Audio Player Styling */
+audio {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  border-radius: 8px;
+  background-color: #121212;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .recording-container {
+    padding: 30px 20px;
+    margin: 20px 15px;
+  }
+
+  .recording-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .recording-btn {
+    width: 100%;
+  }
+}

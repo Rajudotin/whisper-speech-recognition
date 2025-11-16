@@ -1,0 +1,13 @@
+Django>=5.0.6
+torch>=2.0.0
+torchaudio>=2.0.0
+openai-whisper @ git+https://github.com/openai/whisper.git
+ffmpeg-python>=0.2.0
+pyttsx3>=2.90
+numpy>=1.25.0
+django-crispy-forms>=2.0
+crispy-bootstrap5>=0.7
+django-widget-tweaks>=1.5.0
+whitenoise>=6.5.0
+gunicorn>=21.2.0
+python-dotenv>=1.0.0

@@ -1,0 +1,54 @@
+# --------------------
+# PYTHON / DJANGO
+# --------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.log
+*.sqlite3
+
+# Django specific
+db.sqlite3
+media/
+staticfiles/
+
+# --------------------
+# VIRTUAL ENVIRONMENTS
+# --------------------
+venv/
+venvspeech310/
+env/
+
+# --------------------
+# WHISPER / AUDIO
+# --------------------
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+
+# Whisper model weights (too large for GitHub)
+whisper-finetuned/*.safetensors
+whisper-finetuned/*.bin
+whisper-finetuned/*.zip
+whisper-finetuned/model.safetensors
+whisper-finetuned/*.pt
+
+
+# --------------------
+# SYSTEM / EDITOR JUNK
+# --------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node/npm junk (if later you add frontend)
+node_modules/
+
+# Exported notebooks
+.ipynb_checkpoints/
+

@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record Audio</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'record.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'upload_audio' %}">Upload</a>
+      <a href="{% url 'record_audio' %}">Live Record</a>
+    </nav>
+
+    <div class="recording-container">
+      <h1>Record Your Voice</h1>
+      <p id="recording-status" class="status-ready">🎤 Ready to record</p>
+
+      <input type="hidden" name="csrfmiddlewaretoken" id="csrfToken" value="{{ csrf_token }}" />
+
+      <div id="waveform">
+        {% for i in "12345678901234567890" %}
+        <div class="bar"></div>
+        {% endfor %}
+      </div>
+
+      <div class="recording-controls">
+        <button id="startBtn" class="recording-btn">🎙️ Start Recording</button>
+        <button id="stopBtn" class="recording-btn" disabled>🛑 Stop</button>
+        <button id="restartBtn" class="recording-btn" disabled>🔄 Restart</button>
+        <button id="micTestBtn" class="recording-btn">🎧 Test Microphone</button>
+      </div>
+
+      <div id="processing" style="display: none">
+        <div class="spinner"></div>
+        <span>Processing your recording...</span>
+      </div>
+
+      <div class="results-section">
+        <h2>Transcript</h2>
+        <textarea id="transcript" readonly placeholder="Transcript will appear here..."></textarea>
+
+        <h2>Text-to-Speech Output</h2>
+        <audio id="speechPlayer" controls style="display: none"></audio>
+      </div>
+    </div>
+
+    <footer>© 2025 Speech Recognition.</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let recorder, audioChunks = [], audioStream, audioContext;
+        const startBtn = document.getElementById("startBtn");
+        const stopBtn = document.getElementById("stopBtn");
+        const restartBtn = document.getElementById("restartBtn");
+        const micTestBtn = document.getElementById("micTestBtn");
+        const transcriptBox = document.getElementById("transcript");
+        const speechPlayer = document.getElementById("speechPlayer");
+        const recordingStatus = document.getElementById("recording-status");
+        const waveform = document.getElementById("waveform");
+        const bars = waveform.querySelectorAll(".bar");
+        const processing = document.getElementById("processing");
+        const csrfToken = document.getElementById("csrfToken").value;
+
+        micTestBtn.onclick = async () => {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const micRecorder = new MediaRecorder(stream);
+          const micChunks = [];
+
+          micRecorder.ondataavailable = (e) => micChunks.push(e.data);
+          micRecorder.onstop = () => {
+            const audioBlob = new Blob(micChunks, { type: "audio/wav" });
+            const micPlayer = new Audio(URL.createObjectURL(audioBlob));
+            micPlayer.play();
+          };
+
+          micRecorder.start();
+          micTestBtn.textContent = "🔴 Testing Mic...";
+          setTimeout(() => {
+            micRecorder.stop();
+            micTestBtn.textContent = "🎧 Test Microphone";
+          }, 3000);
+        };
+
+        startBtn.onclick = async () => {
+          audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          const source = audioContext.createMediaStreamSource(audioStream);
+          const analyser = audioContext.createAnalyser();
+          analyser.fftSize = 64;
+          const dataArray = new Uint8Array(analyser.frequencyBinCount);
+          source.connect(analyser);
+
+          function drawBars() {
+            analyser.getByteFrequencyData(dataArray);
+            bars.forEach((bar, i) => {
+              const h = (dataArray[i % dataArray.length] / 255) * 40 + 5;
+              bar.style.height = h + "px";
+            });
+            if (recorder && recorder.state === "recording") {
+              requestAnimationFrame(drawBars);
+            }
+          }
+
+          waveform.style.display = "flex";
+          drawBars();
+
+          recorder = new MediaRecorder(audioStream);
+          audioChunks = [];
+
+          recorder.ondataavailable = (e) => audioChunks.push(e.data);
+          recorder.onstop = async () => {
+            waveform.style.display = "none";
+            recordingStatus.textContent = "🛑 Stopped. Processing...";
+            stopBtn.disabled = true;
+            processing.style.display = "flex";
+
+            const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+            const formData = new FormData();
+            formData.append("audio_file", audioBlob, "recorded.wav");
+
+            const response = await fetch("{% url 'transcribe_audio' %}", {
+              method: "POST",
+              headers: { "X-CSRFToken": csrfToken },
+              body: formData,
+            });
+
+            const data = await response.json();
+            processing.style.display = "none";
+
+            if (data.transcript) {
+              transcriptBox.value = data.transcript;
+              speechPlayer.src = data.speech_url + "?v=" + Date.now();
+              speechPlayer.style.display = "block";
+              speechPlayer.play();
+              recordingStatus.textContent = "✅ Done!";
+            } else {
+              recordingStatus.textContent = "❌ Error: " + (data.error || "No speech detected");
+            }
+            restartBtn.disabled = false;
+          };
+
+          recorder.start();
+          startBtn.disabled = true;
+          stopBtn.disabled = false;
+          restartBtn.disabled = true;
+          recordingStatus.textContent = "🔴 Recording...";
+        };
+
+        stopBtn.onclick = () => {
+          recorder.stop();
+          if (audioStream) {
+            audioStream.getTracks().forEach(track => track.stop());
+          }
+        };
+
+        restartBtn.onclick = () => {
+          transcriptBox.value = "";
+          speechPlayer.src = "";
+          speechPlayer.style.display = "none";
+          recordingStatus.textContent = "🎤 Ready to record";
+          startBtn.disabled = false;
+          restartBtn.disabled = true;
+        };
+      });
+    </script>
+  </body>
+</html>
