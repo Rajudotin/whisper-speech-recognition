@@ -104,15 +104,17 @@ python manage.py runserver
 Open in browser: http://127.0.0.1:8000/
 
 🎤 Usage
+
 Upload Audio
+
 Go to /upload_audio/
 Upload .wav / .mp3
-
 Whisper transcribes audio
 TTS generates voice output
 Download .mp3 result
 
 Record Audio
+
 Go to /record_audio/
 Record using microphone
 Whisper transcribes instantly
@@ -120,6 +122,7 @@ TTS speaks the text
 File saved automatically
 
 🔊 Backend Flow (Whisper + TTS)
+
 Receive uploaded audio or recording
 Convert audio → WAV/PCM using ffmpeg
 Load fine-tuned Whisper model
@@ -130,12 +133,14 @@ Save and return TTS output URL
 Delete temp audio files
 
 🛑 Important Notes
+
 Whisper runs on CPU → FP16 is disabled
 Model must be downloaded manually
 Do NOT push model.safetensors to GitHub
 Do NOT push virtual environments
 
 🧹 .gitignore Highlights
+
 venvspeech310/
 venv/
 *.safetensors
@@ -146,8 +151,13 @@ staticfiles/
 db.sqlite3
 
 🧪 Future Improvements
+
 Real-time streaming transcription
 Deploy on Render / Railway
 React frontend
 Multilingual mode
 Speaker diarization (multi-speaker support)
+
+
+<img width="1591" height="830" alt="Screenshot 2025-07-11 135058" src="https://github.com/user-attachments/assets/8641d92b-9a4d-4515-b976-17696589e167" />
+
