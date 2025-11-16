@@ -29,27 +29,16 @@ This folder must exist exactly like this for the app to run.
 
 🧰 Tech Stack
 Backend
-
 Python 3.10
-
 Django 5.2+
-
 Fine-tuned Whisper model (safetensors)
-
 PyTorch 2.9 (CPU)
-
 ffmpeg for audio decoding
-
 pyttsx3 for TTS
-
 Frontend
-
 HTML
-
 CSS
-
 Vanilla JavaScript
-
 Browser-based microphone recording
 
 📂 Project Structure
@@ -82,22 +71,14 @@ speech_project/
 └── .gitignore
 
 📥 Download Fine-Tuned Whisper Model
-
 The model must be manually downloaded.
-
 Download ZIP (Google Drive):
-
 https://drive.google.com/uc?export=download&id=15GNsX30ibuSnIulfHJ2A2vXsnTiWLpHI
 
 After downloading:
-
 Extract the ZIP
-
-Move everything into:
-
+move everything into:
 speech_project/whisper-finetuned/
-
-
 Ensure model.safetensors exists inside the folder
 
 ⚙️ Installation Guide
@@ -109,80 +90,48 @@ venvspeech310\Scripts\activate
 pip install -r requirements.txt
 
 3️⃣ Install ffmpeg (Required)
-
 Download Windows build: https://www.gyan.dev/ffmpeg/builds/
-
 Extract → rename folder to:
-
-C:\ffmpeg
-
-
+    C:\ffmpeg
 Add to PATH:
-
-C:\ffmpeg\bin
-
-
+    C:\ffmpeg\bin
 Verify:
-
-ffmpeg -version
+    ffmpeg -version
 
 ▶️ Run the Server
 python manage.py runserver
-
-
-Open in browser:
-
-http://127.0.0.1:8000/
+Open in browser: http://127.0.0.1:8000/
 
 🎤 Usage
 Upload Audio
-
 Go to /upload_audio/
-
 Upload .wav / .mp3
 
 Whisper transcribes audio
-
 TTS generates voice output
-
 Download .mp3 result
 
 Record Audio
-
 Go to /record_audio/
-
 Record using microphone
-
 Whisper transcribes instantly
-
 TTS speaks the text
-
 File saved automatically
 
 🔊 Backend Flow (Whisper + TTS)
-
 Receive uploaded audio or recording
-
 Convert audio → WAV/PCM using ffmpeg
-
 Load fine-tuned Whisper model
 
 Generate transcription
-
 Convert text → audio using pyttsx3
-
 Save and return TTS output URL
-
 Delete temp audio files
 
 🛑 Important Notes
-
 Whisper runs on CPU → FP16 is disabled
-
 Model must be downloaded manually
-
 Do NOT push model.safetensors to GitHub
-
 Do NOT push virtual environments
 
 🧹 .gitignore Highlights
@@ -195,17 +144,9 @@ venv/
 staticfiles/
 db.sqlite3
 
-
-Keeps repo clean and lightweight.
-
 🧪 Future Improvements
-
 Real-time streaming transcription
-
 Deploy on Render / Railway
-
 React frontend
-
 Multilingual mode
-
 Speaker diarization (multi-speaker support)
