@@ -159,5 +159,7 @@ Multilingual mode
 Speaker diarization (multi-speaker support)
 
 
-<img width="1591" height="830" alt="Screenshot 2025-07-11 135058" src="https://github.com/user-attachments/assets/8641d92b-9a4d-4515-b976-17696589e167" />
+<img width="1910" height="947" alt="Screenshot 2025-07-13 170633" src="https://github.com/user-attachments/assets/650bf81e-e45b-47a5-ae6b-706e3aed7225" />  <img width="1890" height="905" alt="Screenshot 2025-07-13 171106" src="https://github.com/user-attachments/assets/3cf438e9-7f44-47d3-9a74-9f5d0e523615" />
+
+
 
